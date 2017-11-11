@@ -1,0 +1,2 @@
+class ResearcherPageController < ApplicationController
+end
