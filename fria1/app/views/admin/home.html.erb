@@ -1,0 +1,47 @@
+<div class="ui container grid center aligned">
+    <div class="row">
+        <div class="fourteen wide column">
+            <div class="ui basic segment">
+                <div class="ui medium header">
+                    Users
+                </div>
+                <table class="ui orange striped selectable celled table">
+                  <thead>
+                    <tr><th>Email</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th class="five wide">Actions</th>
+                  </tr></thead>
+                  <tbody>
+                    <% @users.each do |user| %>
+                    <tr>
+                        <td><%= user.email %></td>
+                        <td><%= user.type %></td>
+                        <td>
+                            <% if user.activated? && user.type == 'Researcher' %>
+                            Activated
+                            <% elsif !user.activated? && user.type == 'Researcher' %>
+                            Deactivated
+                            <% else %>
+                            N/A
+                            <% end %>
+                        </td>
+                        <td>
+                            <% if can? :show, user %>
+                                <%= link_to 'View', show_user_path(user), class: 'ui button orange mini' %>
+                            <% end %>
+                            <% if can?(:activate, user) && !user.activated? && user.type == 'Researcher' %>
+                                <%= link_to 'Activate', activate_user_path(user), class: 'ui button green mini' %>
+                            <% end %>
+                            <% if can?(:deactivate, user) && user.activated? && user.type == 'Researcher' %>
+                                <%= link_to 'Deactivate', deactivate_user_path(user), class: 'ui red button mini', data: { confirm: "Are you sure to deactivate #{user.email}?"} %>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="ui fixed menu borderless" style="height: 110px; z-index: 11;">
+	<div class="ui container">
+		<div class="left menu">
+			<%= link_to root_path, class: 'item brand' do %>
+				<%= image_tag 'coe_logo.png', class: 'ui tiny middle aligned image' %>
+				<h1 class="ui header white spaced">
+					FRIA
+					<div class="sub header white">
+					Faculty Research Incentive Award
+					</div>
+				</h1>
+			<% end%>
+		</div>
+		<div class="right menu">
+			<% if not user_signed_in? %>
+				<%= form_for(@user, :url => session_path(@user), :html => {class: "ui form", id: "login"}) do |f| %>
+					<div class="fields">
+						<div class="field">
+							<%= f.label :email %>
+							<%= f.email_field :email, autofocus: true, placeholder: "Email" %>
+						</div>
+						<div class="field">
+							<%= f.label :password %>
+							<%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+						</div>
+						<%= f.submit "Login", class: "ui button", id: "login_button" %>
+					</div>
+				<% end %>
+			<% else %>
+				<div class="item white">
+					Hello, <%= "#{current_user.first_name} #{current_user.last_name}" %>
+				</div>
+				<div class="ui secondary menu">
+					<%= link_to 'Home', root_path, class: 'item white' %>
+					<% if can? :create, Proposal %>
+						<div class="ui dropdown item white">
+							Proposals
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<%= link_to('Proposals', proposals_path, class: 'item white') %>
+								<%= link_to('Submit Proposal', new_proposal_path, class: 'item white') %>
+							</div>
+						</div>
+					<% elsif current_user.type == 'Admin' %>
+					<% else %>
+						<%= link_to('Proposals', proposals_path, class: 'item white') %>
+					<% end %>
+					<% # <a class="item white">Settings</a> %>
+					<a> 
+						<%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'item white', id: 'logout_button') %>  
+					</a>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+<%- # this is for the buffer of the nav bar. %>
+<div style="margin-top: 126px;"></div>
+<% if current_user && !current_user.activated? %>
+	<div class="ui inline nag fixed" style="background-color: #d24536; margin-top: 110px; z-index: 10;">
+  <span class="title">
+    Your account is yet to be activated. Please contact us if you think this should not be an error.
+  </span>
+</div>
+<div style="margin-top: 160px;"></div>
+<% end %>
+
+<script>
+	$('.nag').nag('show');
+</script>
