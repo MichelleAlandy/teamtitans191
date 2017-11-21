@@ -1,9 +1,8 @@
 class CreateProposals < ActiveRecord::Migration[5.1]
   def change
     create_table :proposals do |t|
-      t.researcher_id :integer
       t.string :title
-      t.string :reseracher
+      t.string :researcher
       t.text :coresearchers
       t.text :objectives
       t.text :descriptions

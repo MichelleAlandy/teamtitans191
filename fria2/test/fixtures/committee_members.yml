@@ -2,6 +2,8 @@
 
 one:
   user_id: 1
+  position: MyString
 
 two:
   user_id: 1
+  position: MyString
