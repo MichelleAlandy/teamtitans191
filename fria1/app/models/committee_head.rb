@@ -1,2 +1,0 @@
-class CommitteeHead < User
-end

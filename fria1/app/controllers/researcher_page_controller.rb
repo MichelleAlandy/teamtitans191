@@ -1,2 +1,0 @@
-class ResearcherPageController < ApplicationController
-end
