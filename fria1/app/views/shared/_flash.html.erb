@@ -1,9 +1,0 @@
-<div class="ui container" style="margin-bottom: 18px;">
-    <% flash.each do |key, value| %>
-        <% next if key == 'timedout' %>
-        <div class="ui <%= key %> message">
-        <i class="close icon"></i>
-        <p><%= value %></p>
-        </div>
-    <% end %>
-</div>
