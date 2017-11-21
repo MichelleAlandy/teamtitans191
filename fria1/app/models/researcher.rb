@@ -1,3 +1,0 @@
-class Researcher < User
-
-end
