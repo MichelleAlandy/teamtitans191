@@ -1,0 +1,103 @@
+$primary-color: #e67e22;
+$white: #fafafa;
+
+html {
+    height: 100% !important;
+}
+body {
+    background-color: #e9ebee !important;
+}
+
+.ui.celled.feed {
+    .event {
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-top-color: #dadada;
+    }
+}
+
+.ui.orange.button {
+    margin-top: 20px;
+}
+
+.proposal.content {
+    .ui.header{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .column {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    margin-bottom: 18px;
+}
+
+.mini.button {
+    margin-top: 0 !important;
+}
+
+strong {
+    color: red;
+}
+
+#form {
+    overflow: scroll;
+    overflow-x: hidden;    
+}
+
+footer {
+}
+
+.ui.menu {
+    background-color: $primary-color !important;
+}
+
+.white {
+    color: $white !important;
+}
+
+.ui.header.spaced {
+    letter-spacing: 3px;
+    margin: 0;
+    .sub.header {
+        letter-spacing: 1px;
+        font-size: 12px;
+    }
+}
+
+#login {
+    display: flex;
+    align-items: center;
+
+    .ui.button{
+        margin-top: 23px;
+        height: 36px;
+    }
+
+    .field label {
+        color: $white;
+    }
+}
+
+#logout {
+    display: flex;
+    align-items: center;
+
+    .ui.button#logout {
+        margin-top: 23px;
+        height: 36px;
+    }
+}
+
+.column.right.bordered {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #dadada;
+}
+
+#accordion_title {
+    background-color: #1ABC9C; 
+    color: white;
+    border: solid 1px #17A589;
+}
