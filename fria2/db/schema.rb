@@ -29,12 +29,33 @@ ActiveRecord::Schema.define(version: 20171121075900) do
     t.index ["user_id"], name: "index_admins_on_user_id"
   end
 
+  create_table "committee_member_accounts", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "committee_member_id", null: false
+    t.index ["committee_member_id"], name: "index_committee_member_accounts_on_committee_member_id"
+    t.index ["user_id"], name: "index_committee_member_accounts_on_user_id"
+  end
+
   create_table "committee_members", force: :cascade do |t|
     t.string "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_committee_members_on_user_id"
+  end
+
+  create_table "dean_accounts", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "dean_id", null: false
+    t.index ["dean_id"], name: "index_dean_accounts_on_dean_id"
+    t.index ["user_id"], name: "index_dean_accounts_on_user_id"
+  end
+
+  create_table "deans", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_deans_on_user_id"
   end
 
   create_table "proposals", force: :cascade do |t|
@@ -52,6 +73,13 @@ ActiveRecord::Schema.define(version: 20171121075900) do
     t.datetime "updated_at", null: false
     t.bigint "researcher_id"
     t.index ["researcher_id"], name: "index_proposals_on_researcher_id"
+  end
+
+  create_table "researcher_accounts", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "researcher_id", null: false
+    t.index ["researcher_id"], name: "index_researcher_accounts_on_researcher_id"
+    t.index ["user_id"], name: "index_researcher_accounts_on_user_id"
   end
 
   create_table "researchers", force: :cascade do |t|
@@ -84,21 +112,31 @@ ActiveRecord::Schema.define(version: 20171121075900) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password"
-    t.string "email"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.string "first_name"
     t.string "last_name"
     t.string "department"
-    t.string "string"
+    t.string "rank"
     t.string "contact_number"
     t.string "current_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "admins", "users"
   add_foreign_key "committee_members", "users"
+  add_foreign_key "deans", "users"
   add_foreign_key "proposals", "researchers"
   add_foreign_key "researchers", "users"
   add_foreign_key "reviews", "committee_members"

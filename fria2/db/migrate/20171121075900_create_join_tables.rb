@@ -12,5 +12,9 @@ class CreateJoinTables < ActiveRecord::Migration[5.1]
 	  t.index :user_id
 	  t.index :researcher_id
 	end
+	create_join_table :users, :deans, table_name: :dean_accounts do |t|
+	  t.index :user_id
+	  t.index :dean_id
+	end
   end
 end
