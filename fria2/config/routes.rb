@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'researcher/index'
+
   get 'admin/index'
 
   get 'committee_member/index'
@@ -12,5 +14,6 @@ Rails.application.routes.draw do
 
   
   root :to => 'landing_page#index'
+  post '/' => 'landing_page#index' 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
