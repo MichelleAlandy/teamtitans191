@@ -15,25 +15,11 @@ ActiveRecord::Schema.define(version: 20171122071421) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_accounts", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "admin_id", null: false
-    t.index ["admin_id"], name: "index_admin_accounts_on_admin_id"
-    t.index ["user_id"], name: "index_admin_accounts_on_user_id"
-  end
-
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_admins_on_user_id"
-  end
-
-  create_table "committee_member_accounts", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "committee_member_id", null: false
-    t.index ["committee_member_id"], name: "index_committee_member_accounts_on_committee_member_id"
-    t.index ["user_id"], name: "index_committee_member_accounts_on_user_id"
   end
 
   create_table "committee_members", force: :cascade do |t|
@@ -42,13 +28,6 @@ ActiveRecord::Schema.define(version: 20171122071421) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_committee_members_on_user_id"
-  end
-
-  create_table "dean_accounts", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "dean_id", null: false
-    t.index ["dean_id"], name: "index_dean_accounts_on_dean_id"
-    t.index ["user_id"], name: "index_dean_accounts_on_user_id"
   end
 
   create_table "deans", force: :cascade do |t|
@@ -73,13 +52,6 @@ ActiveRecord::Schema.define(version: 20171122071421) do
     t.datetime "updated_at", null: false
     t.bigint "researcher_id"
     t.index ["researcher_id"], name: "index_proposals_on_researcher_id"
-  end
-
-  create_table "researcher_accounts", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "researcher_id", null: false
-    t.index ["researcher_id"], name: "index_researcher_accounts_on_researcher_id"
-    t.index ["user_id"], name: "index_researcher_accounts_on_user_id"
   end
 
   create_table "researchers", force: :cascade do |t|
@@ -129,7 +101,7 @@ ActiveRecord::Schema.define(version: 20171122071421) do
     t.string "department"
     t.string "rank"
     t.string "contact_number"
-    t.string "current_type"
+    t.string "curr_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

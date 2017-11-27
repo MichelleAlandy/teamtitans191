@@ -35,7 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :department
       t.string :rank
       t.string :contact_number
-      t.string :current_type
+      t.string :curr_type
 
       t.timestamps null: false
     end
