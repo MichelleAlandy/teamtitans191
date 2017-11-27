@@ -6,7 +6,6 @@ class CreateProposals < ActiveRecord::Migration[5.1]
       t.text :coresearchers
       t.text :objectives
       t.text :descriptions
-      t.string :attachment
       t.boolean :is_draft
       t.integer :status
       t.integer :votes
