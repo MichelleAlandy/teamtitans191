@@ -1,4 +1,16 @@
 <h1>Landing Page</h1>
-<%= form_for @users, do |f|	%>
-	<%= f.radio_button 
+<% if user_signed_in? %>
+	<%= form_tag do %>
+		<%= radio_button_tag :curr_type, 'Researcher'%>
+		<%= label :curr_type_researcher, 'Researcher' %>
+		<%= radio_button_tag :curr_type, 'Dean' %>
+		<%= label :curr_type_dean, 'Dean' %>
+		<%= radio_button_tag :curr_type, 'Admin' %>
+		<%= label :curr_type_admin, 'Admin' %>
+		<%= radio_button_tag :curr_type, 'Committee Member'%>
+		<%= label :curr_type_committee_member, 'Committee Member' %>
+		<%= submit_tag "Submit" %>
+	<% end %>
 <% end %>
+</ br>
+<%= @user.curr_type %>
