@@ -7,22 +7,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <%= link_to "Return to Home", home_page_path  %>
-  <% if user_signed_in? %>
-  <%= form_tag do %>
-    <%= radio_button_tag :curr_type, 'Researcher'%>
-    <%= label :curr_type_researcher, 'Researcher' %>
-    <%= radio_button_tag :curr_type, 'Dean' %>
-    <%= label :curr_type_dean, 'Dean' %>
-    <%= radio_button_tag :curr_type, 'Admin' %>
-    <%= label :curr_type_admin, 'Admin' %>
-    <%= radio_button_tag :curr_type, 'Committee Member'%>
-    <%= label :curr_type_committee_member, 'Committee Member' %>
-    <%= submit_tag "Submit" %>
-  <% end %>
-  <% end %>
-  </br>
   <body>
+    <%= render 'shared/nav'%>
     <%= yield %>
     <div id= "user_nav">
   	<% if user_signed_in? %>
