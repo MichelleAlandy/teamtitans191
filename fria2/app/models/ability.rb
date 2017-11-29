@@ -30,7 +30,7 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
     user ||= User.new
-    if user.current_type == "Researcher"
+    if user.curr_type == "Researcher"
       can :index, Proposal, user_id: user.id
       can :read, Proposal, user_id: user.id
       if user.proposal.submissionperiod.active && !user.researcher.submitted
@@ -40,13 +40,13 @@ class Ability
       end
       can :cancel, Proposal, is_draft: true
       can :cancel, Proposal
-    elsif user.current_type == "CommitteeMember"
+    elsif user.curr_type == "CommitteeMember"
       can :index, Proposal, is_draft: false
       can :read, Proposal, is_draft: false
       can :create, Review
       can :read, Review, user_id: user.id
       cannot :index, Proposal
-    elsif user.current_type == "CommitteeHead"
+    elsif user.curr_type == "CommitteeHead"
       can :index, Proposal, is_draft: false
       can :read, Proposal, is_draft: false      
       can :toggle, SubmissionPeriod
@@ -54,11 +54,11 @@ class Ability
       can :vote, Proposal, is_draft: false
       can :read, Review
       cannot :index, Proposal
-    elsif user.current_type == "Dean"
+    elsif user.curr_type == "Dean"
       can :index, Proposal
       can :read, Proposal
       can :veto, Proposal
-    elsif user.current_type == "Admin"
+    elsif user.curr_type == "Admin"
       can :index, User
       can :show, User
       can :activate, User
