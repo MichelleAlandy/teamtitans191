@@ -1,17 +1,5 @@
 <%= link_to "FRIA", home_page_path %>
 <% if user_signed_in? %>
-  <%= form_tag do %>
-    <%= radio_button_tag :curr_type, 'Researcher'%>
-    <%= label :curr_type_researcher, 'Researcher' %>
-    <%= radio_button_tag :curr_type, 'Dean' %>
-    <%= label :curr_type_dean, 'Dean' %>
-    <%= radio_button_tag :curr_type, 'Admin' %>
-    <%= label :curr_type_admin, 'Admin' %>
-    <%= radio_button_tag :curr_type, 'Committee Member'%>
-    <%= label :curr_type_committee_member, 'Committee Member' %>
-    <%= submit_tag "Submit" %>
-  <% end %>
-  <%= link_to "Home", home_page_path %>
   <% if @user.curr_type == 'Researcher' %>
     <% if can? :index, Proposal %>
       <%= link_to "Proposals", proposals_page_path %> 
