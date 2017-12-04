@@ -13,3 +13,63 @@
  *= require_tree .
  *= require_self
  */
+
+/* Style for main and sub fonts */
+h2{
+  color: #5F2B2D;
+  font-family: "PT Serif", serif;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+p{
+  font-family: "Roboto", sans-serif;
+}
+
+/* Style for independent buttons (maroon) */
+input[type=submit]{
+  background-color: #5F2B2D;
+  border: 1px solid white;
+  border-radius: 4px;
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+  padding: 8px 16px;
+  text-align: center;
+  transition-duration: 0.3s;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+}
+input[type=submit]:hover{
+  background-color: white;
+  border-color: #5F2B2D;
+  color: #5F2B2D;
+}
+
+/* Style for menu buttons (orange) */
+.menu-btn{
+  background-color: #FF9052;
+  border: none;
+  color: white;
+  display: inline-block;
+}
+.menu .menu-btn{
+
+}
+
+/* Style for input fields */
+input[type=email], select, input[type=password]{
+  background-color: white;
+  border: 1px solid #5F2B2D;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 4px 8px;
+  width: 192px;
+}
+
+/* Style for copyright footer */
+footer{
+  color: #5F2B2D;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.75em;
+  text-align: center;
+}
