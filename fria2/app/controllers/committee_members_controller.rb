@@ -1,4 +1,4 @@
-class CommitteeMemberController < ApplicationController
+class CommitteeMembersController < ApplicationController
   def index
   	@user.curr_type = "CommitteeMember"
   end

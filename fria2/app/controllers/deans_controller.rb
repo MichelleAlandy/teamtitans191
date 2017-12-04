@@ -1,4 +1,4 @@
-class DeanController < ApplicationController
+class DeansController < ApplicationController
   def index
   	@user.curr_type = "Dean"
   end
