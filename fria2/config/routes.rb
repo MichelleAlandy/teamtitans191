@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       end
     end
     resources :researchers do
-      resources :proposals, only: [:index, :read, :create, :update, :delete] do
+      resources :proposals, only: [:index, :read, :new, :update, :delete] do
         resources :reviews, only: [:index, :read]
       end
     end
@@ -33,5 +33,6 @@ Rails.application.routes.draw do
 
   root :to => 'landing_page#index'
   post '/' => 'landing_page#index', as:'home_page'
+  get 'proposals/index' => 'proposals#index', as:'proposals_page'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

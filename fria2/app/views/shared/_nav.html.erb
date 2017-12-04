@@ -13,10 +13,10 @@
   <% end %>
   <%= link_to "Home", home_page_path %>
   <% if @user.curr_type == 'Researcher' %>
-    <% if can :index, Proposal %>
+    <% if can? :index, Proposal %>
       <%= link_to "Proposals", proposals_page_path %> 
     <% end %>
-  <% elsif @user.curr_type == 'CommitteeMember' %>
+  <% elsif @user.curr_type == 'Committee Member' %>
     <%= link_to "Proposals", proposals_page_path %>
   <% elsif @user.curr_type == 'Dean' %>
     <%= link_to "Proposals", proposals_page_path %>
