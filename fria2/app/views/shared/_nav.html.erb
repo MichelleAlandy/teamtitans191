@@ -1,17 +1,31 @@
 <%= link_to "FRIA", home_page_path %>
 <% if user_signed_in? %>
-<%= form_tag do %>
-  <%= radio_button_tag :curr_type, 'Researcher'%>
-  <%= label :curr_type_researcher, 'Researcher' %>
-  <%= radio_button_tag :curr_type, 'Dean' %>
-  <%= label :curr_type_dean, 'Dean' %>
-  <%= radio_button_tag :curr_type, 'Admin' %>
-  <%= label :curr_type_admin, 'Admin' %>
-  <%= radio_button_tag :curr_type, 'Committee Member'%>
-  <%= label :curr_type_committee_member, 'Committee Member' %>
-  <%= submit_tag "Submit" %>
-  <% if can? :create, Proposal %>
-    Prposals
+  <%= form_tag do %>
+    <%= radio_button_tag :curr_type, 'Researcher'%>
+    <%= label :curr_type_researcher, 'Researcher' %>
+    <%= radio_button_tag :curr_type, 'Dean' %>
+    <%= label :curr_type_dean, 'Dean' %>
+    <%= radio_button_tag :curr_type, 'Admin' %>
+    <%= label :curr_type_admin, 'Admin' %>
+    <%= radio_button_tag :curr_type, 'Committee Member'%>
+    <%= label :curr_type_committee_member, 'Committee Member' %>
+    <%= submit_tag "Submit" %>
+  <% end %>
+  <%= link_to "Home", home_page_path %>
+  <% if @user.curr_type == 'Researcher' %>
+    <% if can :index, Proposal %>
+      <%= link_to "Proposals", proposals_page_path %> 
+    <% end %>
+  <% elsif @user.curr_type == 'CommitteeMember' %>
+    <%= link_to "Proposals", proposals_page_path %>
+  <% elsif @user.curr_type == 'Dean' %>
+    <%= link_to "Proposals", proposals_page_path %>
   <% end %>
 <% end %>
+<% if user_signed_in? %>
+ Signed in as <%= current_user.email %>. Not you?
+ <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<% else %>
+ <%= link_to "Sign up", new_user_registration_path %> or
+ <%= link_to "Sign in", new_user_session_path %>
 <% end %>
