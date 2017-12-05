@@ -1,5 +1,5 @@
-<%= link_to "FRIA", home_page_path %>
 <% if user_signed_in? %>
+<%= link_to "FRIA", home_page_path %>
   <% if @user.curr_type == 'Researcher' %>
     <% if can? :index, Proposal %>
       <%= link_to "Proposals", proposals_page_path %> 

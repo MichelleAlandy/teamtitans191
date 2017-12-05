@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   	@user = User.new
   end
 
+  def after_sign_in_path_for(resource)
+    home_page_path(current_user.id)      
+  end
+
   def configure_permitted_parameters
   	devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :contact_number, :department, :rank])
   end

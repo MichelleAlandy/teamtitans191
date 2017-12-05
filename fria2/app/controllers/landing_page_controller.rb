@@ -5,16 +5,16 @@ class LandingPageController < ApplicationController
 			@user.curr_type = params[:curr_type]
 		end
 		if current_user && @user.curr_type == 'Dean'
-			render 'deans/index'
+			 redirect_to :controller => 'deans', :action => 'index' 
 		end
 		if current_user && @user.curr_type == 'Researcher'
-			render 'researchers/index'
+			# render 'researchers/index'
 		end
 		if current_user && @user.curr_type == 'Admin'
-			render 'admins/index'
+			# render 'admins/index'
 		end
 		if current_user && @user.curr_type == 'Committee Member'
-			render 'committee_members/index'
+			# render 'committee_members/index'
 		end
 	end
 end
