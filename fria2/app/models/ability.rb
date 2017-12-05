@@ -31,15 +31,13 @@ class Ability
 
     user ||= User.new
     if user.curr_type == "Researcher"
-      can :index, Proposal, user_id: user.id
-      can :read, Proposal, user_id: user.id
+      can :index, Proposal, researcher_id: user.id
+      can :read, Proposal, researcher_id: user.id
       if user.proposal.submissionperiod.active && !user.researcher.submitted
         can :create, Proposal
         can :new, Proposal
-        can :update, Proposal, is_draft: true
+        can :update, Proposal, researcher_id: user.id, is_draft: true
       end
-      can :cancel, Proposal, is_draft: true
-      can :cancel, Proposal
     elsif user.curr_type == "CommitteeMember"
       can :index, Proposal, is_draft: false
       can :read, Proposal, is_draft: false
