@@ -1,6 +1,13 @@
 <ul>
   <%= link_to image_tag("fria-logo.png", :width => 192), home_page_path %>
-  <li>
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.email %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> or
+    <%= link_to "Sign in", new_user_session_path %>
+  <% end %>
+  <div class = "ui menu">
   <% if user_signed_in? %>
     <% if @user.curr_type == 'Researcher' %>
       <% if can? :index, Proposal %>
@@ -12,12 +19,5 @@
       <%= link_to "Proposals", proposals_page_path %>
     <% end %>
   <% end %>
-  <% if user_signed_in? %>
-   Signed in as <%= current_user.email %>. Not you?
-   <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-   <%= link_to "Sign up", new_user_registration_path %> or
-   <%= link_to "Sign in", new_user_session_path %>
-  <% end %>
-  </li>
+  </div>
 </ul>
